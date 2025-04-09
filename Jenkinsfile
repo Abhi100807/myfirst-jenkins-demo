@@ -1,31 +1,19 @@
-cat <<EOF > Jenkinsfile
 pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Print Python Code') {
             steps {
-                echo "Cloning the repo..."
-                checkout scm
+                sh 'cat hello.py'
             }
         }
 
-        stage('Run Script') {
+        stage('Run Python Code') {
             steps {
-                echo "Running hello.py"
                 sh 'python3 hello.py'
             }
         }
     }
-
-    post {
-        success {
-            echo "Build completed successfully ✅"
-        }
-        failure {
-            echo "Build failed ❌"
-        }
-    }
 }
-EOF
+
 
